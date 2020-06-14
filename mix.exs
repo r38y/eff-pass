@@ -6,10 +6,16 @@ defmodule EFFPass.MixProject do
       app: :eff_pass,
       version: "0.1.0",
       elixir: "~> 1.10",
-      start_permanent: Mix.env() == :prod,
-      deps: deps()
+      name: "EFFPass",
+      description: "Generates passphrases using EFF's word lists.",
+      source_url: "https://github.com/r38y/eff-pass",
+      package: package(),
+      deps: deps(),
+      start_permanent: Mix.env() == :prod
     ]
   end
+
+
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -21,7 +27,15 @@ defmodule EFFPass.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:csv, "~> 2.3"}
+      {:csv, "~> 2.3"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/r38y/eff-pass"}
     ]
   end
 end
