@@ -4,7 +4,7 @@ defmodule EFFPass.MixProject do
   def project do
     [
       app: :eff_pass,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.10",
       name: "EFFPass",
       description: "Generates passphrases using EFF's word lists.",
