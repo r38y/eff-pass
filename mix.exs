@@ -25,7 +25,7 @@ defmodule EFFPass.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:csv, "~> 2.3"},
+      {:csv, "~> 2.4"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
@@ -33,8 +33,7 @@ defmodule EFFPass.MixProject do
   defp package() do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/r38y/eff-pass"},
-      files: ["lib", "data", "mix.exs", "README*", "LICENSE*"]
+      links: %{"GitHub" => "https://github.com/r38y/eff-pass"}
     ]
   end
 end

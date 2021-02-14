@@ -1,4 +1,6 @@
 defmodule EFFPass do
+  @otp_app Mix.Project.config()[:app]
+
   @wordlists %{
     long: "eff_large_wordlist.txt",
     short: "eff_short_wordlist_1.txt",
@@ -10,13 +12,16 @@ defmodule EFFPass do
     options = Keyword.merge(defaults, options)
 
     words = load_words(options[:list])
+
     build_list(words, [], options[:words])
-      |> Enum.join(options[:sep])
+    |> Enum.join(options[:sep])
   end
 
   defp build_list(_, list, 0), do: list
+
   defp build_list(words, list, rem) do
-    pool = words -- list # don't repeat words!
+    # don't repeat words!
+    pool = words -- list
     new_list = list ++ [select_word(pool)]
     build_list(words, new_list, rem - 1)
   end
@@ -26,9 +31,10 @@ defmodule EFFPass do
   end
 
   defp load_words(list) do
-    "../data/#{@wordlists[list]}"
+    @otp_app
+    |> Application.app_dir("priv/#{@wordlists[list]}")
     |> Path.expand(__DIR__)
-    |> File.stream!
+    |> File.stream!()
     |> CSV.decode(separator: ?\t)
     |> Enum.map(fn {:ok, [_, v]} -> v end)
   end
